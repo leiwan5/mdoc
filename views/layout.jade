@@ -1,0 +1,18 @@
+doctype html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN
+html
+	head
+		link(href='/stylesheets/main.css', rel='stylesheet')
+		link(href='/stylesheets/default.css', rel='stylesheet')
+		script(src='/javascripts/highlight.pack.js')
+		script(src='/faye.js')
+		script
+			hljs.initHighlightingOnLoad();
+		script
+			window.faye = new Faye.Client(window.location.origin + '/faye');
+			faye.subscribe('/messages', function(msg){
+				if(window.location.pathname == '/show/' + msg.filename){
+					window.location.href = window.location.href;
+				}
+			});
+	body	
+		!= body
